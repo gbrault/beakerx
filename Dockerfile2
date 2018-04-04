@@ -1,0 +1,14 @@
+# Set the base image to Ubuntu
+
+FROM alpine:3.7
+
+RUN apk add --no-cache python3-dev postgresql-dev && \
+    apk add --no-cache --virtual .build-deps g++ gfortran build-base wget && \
+    ln -s /usr/include/locale.h /usr/include/xlocale.h && \
+    pip3 install numpy==1.14.0 && \
+    pip3 install pandas==0.21.0 && \
+    pip3 install sqlalchemy==1.2.6 && \
+    pip3 install psycopg2 #&& \
+    #pip3 install cvxpy
+
+apk del .build-deps
