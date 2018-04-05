@@ -3,4 +3,4 @@ services:
   pydocker:
      build:
        context: .
-       dockerfile: Dockerfile2
+       dockerfile: Dockerfile
