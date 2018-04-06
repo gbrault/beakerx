@@ -1,3 +1,2 @@
 #!/usr/bin/env bash
-docker-compose build
-
+docker build --tag lobnek/docker .

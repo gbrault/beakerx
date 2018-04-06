@@ -1,6 +1,0 @@
-version: '2'
-services:
-  pydocker:
-     build:
-       context: .
-       dockerfile: Dockerfile
