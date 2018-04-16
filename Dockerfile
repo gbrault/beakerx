@@ -1,14 +1,29 @@
-# Set the base image to Ubuntu
-FROM alpine:3.7
+FROM frolvlad/alpine-glibc:alpine-3.7
 
-RUN apk add --no-cache python3-dev git bash && \
-    apk add --no-cache --virtual .build-deps g++ postgresql-dev libpng-dev freetype-dev && \
-    ln -s /usr/include/locale.h /usr/include/xlocale.h && \
-    pip3 install --upgrade pip && \
-    pip3 install --no-cache-dir numpy==1.14.0 && \
-    pip3 install --no-cache-dir pandas==0.21.0 && \
-    pip3 install --no-cache-dir sqlalchemy==1.2.6 && \
-    pip3 install --no-cache-dir matplotlib && \
-    pip3 install --no-cache-dir psycopg2-binary && \
-    pip3 install --no-cache-dir requests && \
-    apk del .build-deps
+ENV CONDA_DIR="/opt/conda"
+ENV PATH="$CONDA_DIR/bin:$PATH"
+
+# Install conda
+RUN CONDA_VERSION="latest" && \
+    CONDA_MD5_CHECKSUM="bec6203dbb2f53011e974e9bf4d46e93" && \
+    \
+    apk add --no-cache git bash && \
+    apk add --no-cache --virtual=.build-dependencies wget ca-certificates g++ && \
+    \
+    mkdir -p "$CONDA_DIR" && \
+    wget "http://repo.continuum.io/miniconda/Miniconda3-${CONDA_VERSION}-Linux-x86_64.sh" -O miniconda.sh && \
+    echo "$CONDA_MD5_CHECKSUM  miniconda.sh" | md5sum -c && \
+    bash miniconda.sh -f -b -p "$CONDA_DIR" && \
+    echo "export PATH=$CONDA_DIR/bin:\$PATH" > /etc/profile.d/conda.sh && \
+    rm miniconda.sh && \
+    \
+    conda update --all --yes && \
+    conda config --set auto_update_conda False && \
+    \
+    mkdir -p "$CONDA_DIR/locks" && \
+    chmod 777 "$CONDA_DIR/locks" && \
+    \
+    conda install -y nomkl pandas sqlalchemy psycopg2 requests && \
+    rm -r "$CONDA_DIR/pkgs/" && \
+    \
+    apk del --purge .build-dependencies
