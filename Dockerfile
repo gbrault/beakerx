@@ -9,6 +9,6 @@ RUN apk add --no-cache python3-dev git bash && \
     pip3 install --no-cache-dir pandas==0.21.0 && \
     pip3 install --no-cache-dir sqlalchemy==1.2.6 && \
     pip3 install --no-cache-dir matplotlib && \
-    pip3 install --no-cache-dir psycopg2 && \
+    pip3 install --no-cache-dir psycopg2-binary && \
     pip3 install --no-cache-dir requests && \
     apk del .build-deps
