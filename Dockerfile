@@ -8,7 +8,7 @@ RUN CONDA_VERSION="latest" && \
     CONDA_MD5_CHECKSUM="bec6203dbb2f53011e974e9bf4d46e93" && \
     \
     apk add --no-cache git bash && \
-    apk add --no-cache --virtual=.build-dependencies wget ca-certificates g++ && \
+    apk add --no-cache --virtual=.build-dependencies wget ca-certificates && \
     \
     mkdir -p "$CONDA_DIR" && \
     wget "http://repo.continuum.io/miniconda/Miniconda3-${CONDA_VERSION}-Linux-x86_64.sh" -O miniconda.sh && \
@@ -23,7 +23,8 @@ RUN CONDA_VERSION="latest" && \
     mkdir -p "$CONDA_DIR/locks" && \
     chmod 777 "$CONDA_DIR/locks" && \
     \
-    conda install -y nomkl pandas sqlalchemy psycopg2 requests && \
+    conda update -n base conda pip && \
+    conda install -y nomkl pandas=0.21.1 sqlalchemy=1.2.6 psycopg2=2.7.4 && \
     rm -r "$CONDA_DIR/pkgs/" && \
     \
     apk del --purge .build-dependencies

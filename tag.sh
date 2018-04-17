@@ -3,5 +3,5 @@
 docker build --tag lobnek/docker .
 
 ### tags an existing image and pushes it to dockerhub where it shows up with the tag
-docker tag lobnek/docker lobnek/docker:v0.5
+docker tag lobnek/docker lobnek/docker:v0.6
 docker push lobnek/docker
