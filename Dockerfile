@@ -2,12 +2,15 @@ FROM frolvlad/alpine-glibc:alpine-3.7
 
 ENV CONDA_DIR="/opt/conda"
 ENV PATH="$CONDA_DIR/bin:$PATH"
+ENV LANG=C.UTF-8
 
 # Install conda
 RUN CONDA_VERSION="latest" && \
-    CONDA_MD5_CHECKSUM="bec6203dbb2f53011e974e9bf4d46e93" && \
+    CONDA_MD5_CHECKSUM="0c28787e3126238df24c5d4858bd0744" && \
     \
-    apk add --no-cache git bash && \
+    apk add --no-cache git bash postgresql-client && \
+    #RUN apt-get update && apt-get install -f -y postgresql-client
+
     apk add --no-cache --virtual=.build-dependencies wget ca-certificates && \
     \
     mkdir -p "$CONDA_DIR" && \
@@ -28,3 +31,4 @@ RUN CONDA_VERSION="latest" && \
     rm -r "$CONDA_DIR/pkgs/" && \
     \
     apk del --purge .build-dependencies
+
