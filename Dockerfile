@@ -5,10 +5,10 @@ ENV PATH="$CONDA_DIR/bin:$PATH"
 ENV LANG=C.UTF-8
 
 # Install conda
-RUN CONDA_VERSION="latest" && \
-    CONDA_MD5_CHECKSUM="0c28787e3126238df24c5d4858bd0744" && \
+RUN CONDA_VERSION="4.5.4" && \
+    CONDA_MD5_CHECKSUM="a946ea1d0c4a642ddf0c3a26a18bb16d" && \
     \
-    apk add --no-cache git bash postgresql-client && \
+    apk add --no-cache git bash postgresql-client nano && \
     #RUN apt-get update && apt-get install -f -y postgresql-client
 
     apk add --no-cache --virtual=.build-dependencies wget ca-certificates && \
