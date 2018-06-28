@@ -1,4 +1,4 @@
-FROM frolvlad/alpine-glibc:alpine-3.7
+FROM frolvlad/alpine-glibc:alpine-3.7 as builder
 
 ENV CONDA_DIR="/opt/conda"
 ENV PATH="$CONDA_DIR/bin:$PATH"
@@ -27,8 +27,19 @@ RUN CONDA_VERSION="4.5.4" && \
     chmod 777 "$CONDA_DIR/locks" && \
     \
     conda update -n base conda pip && \
-    conda install -y nomkl pandas=0.21.1 sqlalchemy=1.2.6 psycopg2=2.7.4 && \
+    conda install -y nomkl pandas=0.23.1 sqlalchemy=1.2.8 psycopg2=2.7.5 && \
+    pip install --no-cache-dir influxdb && \
     rm -r "$CONDA_DIR/pkgs/" && \
     \
     apk del --purge .build-dependencies
 
+#### Here the test-configuration
+
+FROM builder as test
+
+RUN pip install --no-cache-dir pytest
+
+COPY ./test   /docker/test
+WORKDIR docker
+
+CMD py.test test
