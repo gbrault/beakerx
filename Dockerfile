@@ -28,7 +28,7 @@ RUN CONDA_VERSION="4.5.4" && \
     \
     conda update -n base conda pip && \
     conda install -y nomkl pandas=0.23.1 sqlalchemy=1.2.8 psycopg2=2.7.5 && \
-    pip install --no-cache-dir influxdb && \
+    pip install --no-cache-dir influxdb==5.1.0 && \
     rm -r "$CONDA_DIR/pkgs/" && \
     \
     apk del --purge .build-dependencies
