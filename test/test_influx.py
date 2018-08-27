@@ -1,4 +1,3 @@
-import pandas as pd
 from unittest import TestCase
 
 from influxdb import InfluxDBClient

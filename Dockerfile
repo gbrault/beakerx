@@ -27,11 +27,14 @@ RUN CONDA_VERSION="4.5.4" && \
     chmod 777 "$CONDA_DIR/locks" && \
     \
     conda update -n base conda pip && \
-    conda install -y nomkl pandas=0.23.1 sqlalchemy=1.2.8 psycopg2=2.7.5 && \
+    conda install -y nomkl pandas=0.23.1 sqlalchemy=1.2.8 psycopg2=2.7.5 matplotlib && \
     pip install --no-cache-dir influxdb==5.1.0 && \
     rm -r "$CONDA_DIR/pkgs/" && \
     \
-    apk del --purge .build-dependencies
+    apk del --purge .build-dependencies && \
+    \
+    mkdir -p /root/.config/matplotlib && \
+    echo "backend : Agg" > /root/.config/matplotlib/matplotlibrc
 
 #### Here the test-configuration
 
