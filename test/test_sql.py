@@ -10,6 +10,8 @@ from time import sleep
 from sqlalchemy import Column, Integer, String
 
 Base = declarative_base()
+
+
 class User(Base):
     __tablename__ = 'users'
 
@@ -27,7 +29,7 @@ class TestSQL(TestCase):
         from sqlalchemy.orm import sessionmaker
         session = sessionmaker(bind=engine)()
 
-        user=User(name="Peter", fullname="Peter Maffay")
+        user = User(name="Peter", fullname="Peter Maffay")
         session.add(user)
         session.commit()
 
@@ -45,12 +47,16 @@ class TestSQL(TestCase):
             except OperationalError:
                 sleep(1)
 
+        # drop all tables (and therefore all content if there is any...)
+        Base.metadata.drop_all(engine)
+
+        # recreate all tables...
         Base.metadata.create_all(engine)
 
         from sqlalchemy.orm import sessionmaker
         session = sessionmaker(bind=engine)()
 
-        user=User(name="Peter", fullname="Peter Maffay")
+        user = User(name="Peter", fullname="Peter Maffay")
         session.add(user)
         session.commit()
 
