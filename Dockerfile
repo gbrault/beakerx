@@ -9,8 +9,7 @@ RUN CONDA_VERSION="4.5.4" && \
     CONDA_MD5_CHECKSUM="a946ea1d0c4a642ddf0c3a26a18bb16d" && \
     \
     apk add --no-cache git bash postgresql-client nano && \
-    #RUN apt-get update && apt-get install -f -y postgresql-client
-
+    \
     apk add --no-cache --virtual=.build-dependencies wget ca-certificates && \
     \
     mkdir -p "$CONDA_DIR" && \
@@ -27,7 +26,7 @@ RUN CONDA_VERSION="4.5.4" && \
     chmod 777 "$CONDA_DIR/locks" && \
     \
     conda update -n base conda pip && \
-    conda install -y nomkl pandas=0.23.1 sqlalchemy=1.2.8 psycopg2=2.7.5 matplotlib && \
+    conda install -y nomkl pandas=0.23.4 sqlalchemy=1.2.11 psycopg2=2.7.5 matplotlib && \
     pip install --no-cache-dir influxdb==5.1.0 && \
     rm -r "$CONDA_DIR/pkgs/" && \
     \
