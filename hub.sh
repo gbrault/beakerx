@@ -9,7 +9,7 @@ then
     docker build --tag ${image}:latest --target builder .
     docker push ${image}:latest
 
-    VERSION='v1.1'
+    VERSION='v1.2'
     echo ${VERSION}
 
     docker tag ${image} ${image}:${VERSION}
