@@ -26,7 +26,8 @@ RUN CONDA_VERSION="4.5.4" && \
     chmod 777 "$CONDA_DIR/locks" && \
     \
     conda update -n base conda pip && \
-    conda install -y nomkl pandas=0.23.4 sqlalchemy=1.2.11 psycopg2=2.7.5 matplotlib && \
+    conda install -y nomkl pandas=0.23.4 sqlalchemy=1.2.11 psycopg2=2.7.5 matplotlib pymongo=3.7.2 && \
+    conda install -c conda-forge mongoengine=0.15.3 && \
     pip install --no-cache-dir influxdb==5.1.0 && \
     rm -r "$CONDA_DIR/pkgs/" && \
     \
