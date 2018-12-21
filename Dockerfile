@@ -34,6 +34,9 @@ RUN CONDA_VERSION="4.5.4" && \
     mkdir -p /root/.config/matplotlib && \
     echo "backend : Agg" > /root/.config/matplotlib/matplotlibrc
 
+    # this is so annoying...
+    COPY ./helpers /opt/.pycharm_helpers/pycharm
+
 #### Here the test-configuration
 
 FROM builder as test
