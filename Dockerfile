@@ -26,7 +26,7 @@ RUN CONDA_VERSION="4.5.4" && \
     chmod 777 "$CONDA_DIR/locks" && \
     \
     conda update -n base conda pip && \
-    conda install -y nomkl pandas=0.23.4 sqlalchemy=1.2.11 psycopg2=2.7.6.1 && \
+    conda install -y nomkl pandas=0.24.0 sqlalchemy=1.2.16 psycopg2=2.7.6.1 && \
     rm -r "$CONDA_DIR/pkgs/" && \
     \
     apk del --purge .build-dependencies && \
