@@ -3,3 +3,9 @@ build.sh
 LICENSE
 README.md
 tag.sh
+
+Dockerfile
+Dockerfile-Jupyter
+hub.sh
+
+test.sh
