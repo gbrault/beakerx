@@ -29,10 +29,7 @@ RUN CONDA_VERSION="4.5.4" && \
     conda install -y nomkl pandas=0.24.0 sqlalchemy=1.2.16 psycopg2=2.7.6.1 && \
     rm -r "$CONDA_DIR/pkgs/" && \
     \
-    apk del --purge .build-dependencies && \
-    \
-    mkdir -p /root/.config/matplotlib && \
-    echo "backend : Agg" > /root/.config/matplotlib/matplotlibrc
+    apk del --purge .build-dependencies
 
     # this is so annoying...
     COPY ./helpers /opt/.pycharm_helpers/pycharm
