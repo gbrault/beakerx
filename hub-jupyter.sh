@@ -5,7 +5,7 @@ image='lobnek/jupyter'
 docker build -f ./Dockerfile-Jupyter --tag ${image}:latest --no-cache .
 docker push ${image}:latest
 
-VERSION='v1.0'
+VERSION='v1.1'
 echo ${VERSION}
 
 docker tag ${image} ${image}:${VERSION}
