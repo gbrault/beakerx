@@ -5,6 +5,7 @@
 
 !test
 !jupyter_notebook_config.py
+!helpers
 
 **/__pycache__
 **/*.pyc
