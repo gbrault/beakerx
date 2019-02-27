@@ -1,11 +1,11 @@
-.gitignore
-build.sh
-LICENSE
-README.md
-tag.sh
+#https://stackoverflow.com/questions/28097064/dockerignore-ignore-everything-except-a-file-and-the-dockerfile
 
-Dockerfile
-Dockerfile-Jupyter
-hub.sh
+# Ignore Everything
+**
 
-test.sh
+!test
+!jupyter_notebook_config.py
+
+**/__pycache__
+**/*.pyc
+.ipynb_checkpoints
