@@ -1,8 +1,20 @@
 # Set the base image to beakerx
 FROM jupyter/minimal-notebook:45b8529a6bfc
 
+USER root
+#RUN apt-get update && apt install -y font-manager
+RUN echo ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true | debconf-set-selections
+RUN apt-get update && apt install -y ttf-mscorefonts-installer
+USER $NB_UID
+
 RUN conda config --env --add pinned_packages 'openjdk>8.0.121'
 RUN conda install -y -c conda-forge pandas=0.24.1 rise=5.4.1 requests=2.21.0 beakerx=1.3.0 ipywidgets=7.4.2 seaborn=0.9.0 matplotlib=3.0.3
 RUN conda install -y -c cvxgrp cvxpy=1.0.21 && conda clean -y --all
 
 COPY jupyter_notebook_config.py /etc/jupyter/jupyter_notebook_config.py
+
+#USER root
+#RUN echo ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true | debconf-set-selections
+#RUN apt-get update && apt install -y ttf-mscorefonts-installer
+#USER $NB_UID
+
