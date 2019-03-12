@@ -1,20 +1,24 @@
 # Set the base image to beakerx
-FROM jupyter/minimal-notebook:45b8529a6bfc
+FROM beakerx/beakerx:latest
 
-USER root
-#RUN apt-get update && apt install -y font-manager
-RUN echo ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true | debconf-set-selections
-RUN apt-get update && apt install -y ttf-mscorefonts-installer
-USER $NB_UID
+ENV PATH /opt/conda/envs/beakerx/bin:$PATH
 
-RUN conda config --env --add pinned_packages 'openjdk>8.0.121'
-RUN conda install -y -c conda-forge pandas=0.24.1 rise=5.4.1 requests=2.21.0 beakerx=1.3.0 ipywidgets=7.4.2 seaborn=0.9.0 matplotlib=3.0.3
-RUN conda install -y -c cvxgrp cvxpy=1.0.21 && conda clean -y --all
+# copy the requirements file over...
+COPY requirements.txt /tmp/requirements.txt
 
+# copy the config file
 COPY jupyter_notebook_config.py /etc/jupyter/jupyter_notebook_config.py
 
-#USER root
-#RUN echo ttf-mscorefonts-installer msttcorefonts/accepted-mscorefonts-eula select true | debconf-set-selections
-#RUN apt-get update && apt install -y ttf-mscorefonts-installer
-#USER $NB_UID
+# update pip
+RUN pip install --no-cache-dir --upgrade pip
 
+# we are now using the pip installed in /opt/conda/envs/beakerx/bin
+RUN pip --version
+
+# update conda
+RUN conda info
+
+# install rise and cvxpy
+RUN conda install -y -n beakerx -c conda-forge rise=5.4.1 cvxpy=1.0.14
+
+RUN pip install --no-cache-dir -r /tmp/requirements.txt

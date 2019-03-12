@@ -6,6 +6,7 @@
 !test
 !jupyter_notebook_config.py
 !helpers
+!requirements.txt
 
 **/__pycache__
 **/*.pyc
