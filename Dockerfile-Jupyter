@@ -1,10 +1,10 @@
 # Set the base image to beakerx
 FROM beakerx/beakerx:latest
 
-ENV PATH /opt/conda/envs/beakerx/bin:$PATH
+# it's better to be root as this Dockerfile will try to update conda etc.
+USER root
 
-# copy the requirements file over...
-COPY requirements.txt /tmp/requirements.txt
+ENV PATH /opt/conda/envs/beakerx/bin:$PATH
 
 # copy the config file
 COPY jupyter_notebook_config.py /etc/jupyter/jupyter_notebook_config.py
@@ -12,13 +12,11 @@ COPY jupyter_notebook_config.py /etc/jupyter/jupyter_notebook_config.py
 # update pip
 RUN pip install --no-cache-dir --upgrade pip
 
-# we are now using the pip installed in /opt/conda/envs/beakerx/bin
-RUN pip --version
-
-# update conda
-RUN conda info
-
 # install rise and cvxpy
-RUN conda install -y -n beakerx -c conda-forge rise=5.4.1 cvxpy=1.0.14
+RUN conda install -y -n beakerx -c conda-forge rise=5.4.1 cvxpy=1.0.14 && conda clean -y --all
 
-RUN pip install --no-cache-dir -r /tmp/requirements.txt
+# go back to the standard user
+USER $NB_USER
+
+# create the work folder
+RUN mkdir -p /home/$NB_USER/work
