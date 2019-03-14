@@ -1,2 +1,4 @@
 #!/usr/bin/env bash
-docker build --tag lobnek/docker .
+docker-compose build jupyter
+docker-compose build docker
+

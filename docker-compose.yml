@@ -1,19 +1,15 @@
 version: '3.5'
 services:
-  web:
+  jupyter:
      build:
        context: .
        dockerfile: Dockerfile-Jupyter
      volumes:
-       - /media/j/notebooks:/home/beakerx/work
-     command:
-       - /bin/bash
-
-  lobnek:
+       - /media/j/notebooks:/home/${NB-USER}/work
+     ports:
+       - ${PORT}:8888
+  docker:
     build:
       context: .
       dockerfile: Dockerfile
-      target: builder
 
-    command:
-      - /bin/bash

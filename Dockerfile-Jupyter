@@ -4,19 +4,27 @@ FROM beakerx/beakerx:latest
 # it's better to be root as this Dockerfile will try to update conda etc.
 USER root
 
+# that's important to make sure the pip of the beakerx environment is in the path
 ENV PATH /opt/conda/envs/beakerx/bin:$PATH
 
 # copy the config file
 COPY jupyter_notebook_config.py /etc/jupyter/jupyter_notebook_config.py
 
-# update pip
+# update conda & pip
+RUN conda update conda
 RUN pip install --no-cache-dir --upgrade pip
 
 # install rise and cvxpy
-RUN conda install -y -n beakerx -c conda-forge rise=5.4.1 cvxpy=1.0.14 && conda clean -y --all
+RUN conda install -y -n beakerx -c conda-forge rise=5.4.1 cvxpy=1.0.14 pandas=0.24.1 && conda clean -y --all
 
 # go back to the standard user
 USER $NB_USER
 
 # create the work folder
 RUN mkdir -p /home/$NB_USER/work
+
+# output diagnosis files
+RUN conda info > /home/$NB_USER/work/conda_info.txt
+RUN conda list -n beakerx > /home/$NB_USER/work/conda_list.txt
+RUN pip --version > /home/$NB_USER/work/pip_version.txt
+RUN conda --version > /home/$NB_USER/work/conda_version.txt
