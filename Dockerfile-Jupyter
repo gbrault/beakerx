@@ -6,6 +6,7 @@ USER root
 
 # that's important to make sure the pip of the beakerx environment is in the path
 ENV PATH /opt/conda/envs/beakerx/bin:$PATH
+ENV WORK /home/$NB_USER/work
 
 # copy the config file
 COPY jupyter_notebook_config.py /etc/jupyter/jupyter_notebook_config.py
@@ -21,10 +22,10 @@ RUN conda install -y -n beakerx -c conda-forge rise=5.4.1 cvxpy=1.0.14 pandas=0.
 USER $NB_USER
 
 # create the work folder
-RUN mkdir -p /home/$NB_USER/work
+RUN mkdir -p $WORK
 
 # output diagnosis files
-RUN conda info > /home/$NB_USER/work/conda_info.txt
-RUN conda list -n beakerx > /home/$NB_USER/work/conda_list.txt
-RUN pip --version > /home/$NB_USER/work/pip_version.txt
-RUN conda --version > /home/$NB_USER/work/conda_version.txt
+RUN conda info > $WORK/conda_info.txt
+RUN conda list -n beakerx > $WORK/conda_list.txt
+RUN pip --version > $WORK/pip_version.txt
+RUN conda --version > $WORK/conda_version.txt
