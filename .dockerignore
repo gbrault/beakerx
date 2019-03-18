@@ -4,9 +4,8 @@
 **
 
 !test
-!jupyter_notebook_config.py
-!helpers
-!requirements.txt
+!jupyter/jupyter_notebook_config.py
+#!helpers
 
 **/__pycache__
 **/*.pyc

@@ -9,7 +9,7 @@ ENV PATH /opt/conda/envs/beakerx/bin:$PATH
 ENV WORK /home/$NB_USER/work
 
 # copy the config file
-COPY jupyter_notebook_config.py /etc/jupyter/jupyter_notebook_config.py
+COPY jupyter/jupyter_notebook_config.py /etc/jupyter/jupyter_notebook_config.py
 
 # update conda & pip
 RUN conda update conda

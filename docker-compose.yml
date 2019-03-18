@@ -3,7 +3,7 @@ services:
   jupyter:
      build:
        context: .
-       dockerfile: Dockerfile-Jupyter
+       dockerfile: jupyter/Dockerfile
      volumes:
        - /media/j/notebooks:/home/${NB-USER}/work
      ports:
@@ -11,5 +11,14 @@ services:
   docker:
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: lobnek/Dockerfile
+      target: builder
 
+  sut:
+     build:
+       context: .
+       dockerfile: lobnek/Dockerfile
+       target: test
+
+     volumes:
+        - ./test:/docker/test:ro
