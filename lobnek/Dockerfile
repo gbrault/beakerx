@@ -32,7 +32,7 @@ RUN CONDA_VERSION="4.5.4" && \
     apk del --purge .build-dependencies
 
     # this is so annoying...
-    COPY ./helpers /opt/.pycharm_helpers/pycharm
+    # COPY ./helpers /opt/.pycharm_helpers/pycharm
 
 #### Here the test-configuration
 
