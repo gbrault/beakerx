@@ -1,5 +1,8 @@
 FROM frolvlad/alpine-glibc:alpine-3.7 as builder
 
+# File Author / Maintainer
+MAINTAINER Thomas Schmelzer "thomas.schmelzer@lobnek.com"
+
 ENV CONDA_DIR="/opt/conda"
 ENV PATH="$CONDA_DIR/bin:$PATH"
 ENV LANG=C.UTF-8

@@ -1,6 +1,9 @@
 # Set the base image to beakerx
 FROM beakerx/beakerx:latest
 
+# File Author / Maintainer
+MAINTAINER Thomas Schmelzer "thomas.schmelzer@lobnek.com"
+
 # it's better to be root as this Dockerfile will try to update conda etc.
 USER root
 
