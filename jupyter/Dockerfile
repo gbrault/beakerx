@@ -1,5 +1,5 @@
 # Set the base image to beakerx
-FROM beakerx/beakerx:latest
+FROM beakerx/beakerx:1.0.0
 
 # File Author / Maintainer
 MAINTAINER Thomas Schmelzer "thomas.schmelzer@lobnek.com"
@@ -20,6 +20,9 @@ RUN pip install --no-cache-dir --upgrade pip
 
 # install rise and cvxpy
 RUN conda install -y -n beakerx -c conda-forge rise=5.4.1 cvxpy=1.0.14 pandas=0.24.1 && conda clean -y --all
+
+# this will set ownership for .conda, .config, .npm, etc...
+RUN chown -R $NB_USER:$NB_USER /home/$NB_USER
 
 # go back to the standard user
 USER $NB_USER
