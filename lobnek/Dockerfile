@@ -1,4 +1,4 @@
-FROM frolvlad/alpine-glibc:alpine-3.7 as builder
+FROM frolvlad/alpine-glibc:alpine-3.7
 
 # File Author / Maintainer
 MAINTAINER Thomas Schmelzer "thomas.schmelzer@lobnek.com"

@@ -27,7 +27,7 @@ jupyter: build
 	docker-compose up jupyter
 
 hub:
-	docker build -f Dockerfile --tag ${IMAGE}:latest --no-cache --target builder .
+	docker build -f Dockerfile --tag ${IMAGE}:latest --no-cache .
 	docker push ${IMAGE}:latest
 	docker tag ${IMAGE}:latest ${IMAGE}:${VERSION}
 	docker push ${IMAGE}:${VERSION}
