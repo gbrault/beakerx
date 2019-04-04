@@ -4,5 +4,5 @@ services:
     image: lobnek/docker
     build:
       context: .
-      dockerfile: lobnek/Dockerfile
+      dockerfile: Dockerfile
       target: builder

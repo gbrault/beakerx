@@ -37,13 +37,3 @@ RUN CONDA_VERSION="4.5.4" && \
     # this is so annoying...
     # COPY ./helpers /opt/.pycharm_helpers/pycharm
 
-#### Here the test-configuration
-
-FROM builder as test
-
-RUN pip install --no-cache-dir pytest
-
-COPY ./test   /docker/test
-WORKDIR docker
-
-CMD py.test test

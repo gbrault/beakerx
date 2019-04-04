@@ -4,7 +4,7 @@ services:
     image: lobnek/jupyter
     build:
        context: .
-       dockerfile: jupyter/Dockerfile
+       dockerfile: Dockerfile
     volumes:
        - /media/j/notebooks:${WORK}
     ports:
