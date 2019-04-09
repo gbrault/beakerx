@@ -4,8 +4,7 @@ SHELL := /bin/bash
 VERSION := 1.7
 
 
-.PHONY: help build hub server
-
+.PHONY: help build hub
 
 .DEFAULT: help
 
@@ -29,7 +28,4 @@ hub:
 	docker rmi -f ${IMAGE}:${VERSION}
 
 
-server:
-	echo "http://localhost:5555/admin"
-	docker-compose run -p "5555:8000" web python start.py
 
