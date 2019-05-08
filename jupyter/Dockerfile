@@ -1,5 +1,5 @@
 # Set the base image to beakerx
-FROM beakerx/beakerx:1.0.0
+FROM beakerx/beakerx:1.3.0
 
 # File Author / Maintainer
 MAINTAINER Thomas Schmelzer "thomas.schmelzer@lobnek.com"
