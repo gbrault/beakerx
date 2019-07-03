@@ -1,7 +1,7 @@
 #!make
 IMAGE := lobnek/docker
 SHELL := /bin/bash
-VERSION := 1.8
+VERSION := 1.9
 
 
 .PHONY: help build hub
@@ -17,7 +17,6 @@ help:
 	@echo "       Fire off the server"
 
 build:
-	docker-compose build jupyter
 	docker-compose build docker
 
 hub:
