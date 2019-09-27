@@ -14,7 +14,7 @@ RUN conda config --env --add pinned_packages 'openjdk>8.0.121'
 # install rise and cvxpy
 #RUN conda install -y -c conda-forge rise cvxpy beakerx
 
-RUN conda install -y -c conda-forge pyarrow
+RUN conda install -y -c conda-forge pyarrow=0.13.0
 
 
 RUN conda list
