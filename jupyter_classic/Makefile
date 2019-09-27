@@ -1,12 +1,12 @@
 #!make
 IMAGE := lobnek/jupyterx
 SHELL := /bin/bash
-VERSION := 3.1
+VERSION := 4.0
 
 include .env
 export
 
-.PHONY: help build jupyter hub
+.PHONY: help build jupyter jupyterlab hub
 
 
 .DEFAULT: help
@@ -22,12 +22,19 @@ help:
 build:
 	docker-compose build jupyter
 
+build-lab:
+	docker-compose build jupyterlab
+
 jupyter: build
 	echo "http://localhost:${PORT}"
 	docker-compose up jupyter
 
+jupyterlab: build-lab
+	echo "http://localhost:${PORTLAB}/lab"
+	docker-compose up jupyterlab
+
 hub:
-	docker build -f Dockerfile --tag ${IMAGE}:latest --no-cache .
+	docker build -f Dockerfile --tag ${IMAGE}:latest --target jupyterlab .
 	docker push ${IMAGE}:latest
 	docker tag ${IMAGE}:latest ${IMAGE}:${VERSION}
 	docker push ${IMAGE}:${VERSION}

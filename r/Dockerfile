@@ -3,7 +3,7 @@ FROM rocker/rstudio:3.6.1
 # see https://arrow.apache.org/install/
 # rocker/rstudio is based on debian
 RUN apt update && \
-    apt install -y -V apt-transport-https curl gnupg lsb-release apt-utils locate
+    apt install -y -V apt-transport-https curl gnupg lsb-release apt-utils
 
 RUN echo "deb http://deb.debian.org/debian $(lsb_release --codename --short)-backports main contrib" >> /etc/apt/sources.list.d/backports.list && \
     curl --output /usr/share/keyrings/apache-arrow-keyring.gpg https://dl.bintray.com/apache/arrow/$(lsb_release --id --short | tr 'A-Z' 'a-z')/apache-arrow-keyring.gpg && \
