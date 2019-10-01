@@ -17,6 +17,9 @@ RUN pip install --no-cache-dir pyarrow==0.14.1
 # ----------------------------------------------------------------------------------------
 FROM jupyter as jupyterlab
 
+RUN conda install -c plotly jupyterlab-dash && \
+    jupyter labextension install jupyterlab-dash
+
 RUN conda install -y -c conda-forge jupyterlab && \
     jupyter labextension install @jupyter-widgets/jupyterlab-manager && \
     jupyter labextension install beakerx-jupyterlab && \
