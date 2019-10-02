@@ -19,7 +19,7 @@ RUN conda update conda
 RUN pip install --no-cache-dir --upgrade pip
 
 # install rise and cvxpy
-RUN conda install -y -n beakerx -c conda-forge rise=5.5.0 cvxpy=1.0.15 pandas=0.24.2 numba && conda clean -y --all
+RUN conda install -y -n beakerx -c conda-forge rise=5.5.0 cvxpy=1.0.15 pandas=0.24.2 pyarrow && conda clean -y --all
 
 # this will set ownership for .conda, .config, .npm, etc...
 RUN chown -R $NB_USER:$NB_USER /home/$NB_USER
