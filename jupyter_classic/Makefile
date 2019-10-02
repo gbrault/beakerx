@@ -1,7 +1,7 @@
 #!make
 IMAGE := lobnek/jupyterx
 SHELL := /bin/bash
-VERSION := 4.0
+VERSION := 4.1
 
 include .env
 export
@@ -33,8 +33,8 @@ jupyterlab: build-lab
 	echo "http://localhost:${PORTLAB}/lab"
 	docker-compose up jupyterlab
 
-hub:
-	docker build -f Dockerfile --tag ${IMAGE}:latest --target jupyterlab .
+hub: build-lab
+	#docker build -f Dockerfile --tag ${IMAGE}:latest --target jupyterlab .
 	docker push ${IMAGE}:latest
 	docker tag ${IMAGE}:latest ${IMAGE}:${VERSION}
 	docker push ${IMAGE}:${VERSION}

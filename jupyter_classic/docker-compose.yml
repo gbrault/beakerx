@@ -1,7 +1,7 @@
 version: '3.5'
 services:
   jupyter:
-    image: lobnek/jupyterx
+    image: lobnek/jupyterx:latest
     build:
        context: .
        dockerfile: Dockerfile
@@ -12,7 +12,7 @@ services:
        - ${PORT}:8888
 
   jupyterlab:
-    image: lobnek/jupyterx
+    image: lobnek/jupyterx:latest
     build:
       context: .
       dockerfile: Dockerfile
