@@ -7,7 +7,6 @@ MAINTAINER Thomas Schmelzer "thomas.schmelzer@lobnek.com"
 # copy the config file
 COPY jupyter_notebook_config.py /etc/jupyter/jupyter_notebook_config.py
 
-#RUN conda install -y -c conda-forge r-arrow
 RUN conda config --env --add pinned_packages 'openjdk>8.0.121'
 
 # install rise and cvxpy
