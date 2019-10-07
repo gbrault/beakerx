@@ -1,7 +1,7 @@
 #!make
 IMAGE := lobnek/jupyterx
 SHELL := /bin/bash
-VERSION := 4.4
+VERSION := 4.5
 
 include .env
 export
