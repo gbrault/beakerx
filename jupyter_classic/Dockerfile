@@ -25,6 +25,6 @@ RUN conda install -y -c conda-forge jupyterlab && \
     jupyter lab build
 
 RUN conda install -c plotly -c defaults -c conda-forge "jupyterlab>=1.0" jupyterlab-dash && \
-    pip install cufflinks && \
+    pip install dash_daq==0.2.2 && \
     jupyter labextension install jupyterlab-dash
 
