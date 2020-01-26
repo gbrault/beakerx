@@ -3,9 +3,6 @@ IMAGE := lobnek/jupyterx
 SHELL := /bin/bash
 VERSION := 4.9
 
-#include .env
-#export
-
 .PHONY: help build jupyter jupyterlab hub
 
 

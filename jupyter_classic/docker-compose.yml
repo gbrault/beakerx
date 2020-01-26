@@ -17,8 +17,8 @@ services:
       context: .
       dockerfile: Dockerfile
       target: jupyterlab
-    volumes:
-      - /media/j/notebooks:/home/jovyan/work
+    #volumes:
+      # /media/j/notebooks:/home/jovyan/work
     ports:
       - 8862:8888
 
