@@ -6,10 +6,10 @@ services:
        context: .
        dockerfile: Dockerfile
        target: jupyter
-    volumes:
-       - /media/j/notebooks:${WORK}
+    #volumes:
+    #   - /media/j/notebooks:/home/jovyan/work
     ports:
-       - ${PORT}:8888
+       - 8861:8888
 
   jupyterlab:
     image: lobnek/jupyterx:latest
@@ -18,7 +18,7 @@ services:
       dockerfile: Dockerfile
       target: jupyterlab
     volumes:
-      - /media/j/notebooks:${WORK}
+      - /media/j/notebooks:/home/jovyan/work
     ports:
-      - ${PORTLAB}:8888
+      - 8862:8888
 

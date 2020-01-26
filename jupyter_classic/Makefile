@@ -1,10 +1,10 @@
 #!make
 IMAGE := lobnek/jupyterx
 SHELL := /bin/bash
-VERSION := 4.8
+VERSION := 4.9
 
-include .env
-export
+#include .env
+#export
 
 .PHONY: help build jupyter jupyterlab hub
 
@@ -26,11 +26,11 @@ build-lab:
 	docker-compose build jupyterlab
 
 jupyter: build
-	echo "http://localhost:${PORT}"
+	echo "http://localhost:8861"
 	docker-compose up jupyter
 
 jupyterlab: build-lab
-	echo "http://localhost:${PORTLAB}/lab"
+	echo "http://localhost:8862/lab"
 	docker-compose up jupyterlab
 
 hub: build-lab

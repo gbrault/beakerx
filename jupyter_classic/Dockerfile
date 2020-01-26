@@ -10,10 +10,11 @@ COPY jupyter_notebook_config.py /etc/jupyter/jupyter_notebook_config.py
 #RUN conda config --env --add pinned_packages 'openjdk>8.0.121'
 
 # install rise and cvxpy
-RUN conda install -y -c conda-forge nomkl pandas cvxpy beakerx rise && \
+RUN conda install -y -c conda-forge nomkl=3.0 pandas=0.25.3 cvxpy=1.0.25 beakerx=1.4.1 rise=5.6.0&& \
     conda clean -y --all
 
 #RUN pip install --no-cache-dir pyarrow==0.14.1
+#CMD jupyter notebook --ip 127.0.0.1
 
 # ----------------------------------------------------------------------------------------
 FROM jupyter as jupyterlab
