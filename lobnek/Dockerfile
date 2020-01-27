@@ -8,8 +8,8 @@ ENV PATH="$CONDA_DIR/bin:$PATH"
 ENV LANG=C.UTF-8
 
 # Install conda
-RUN CONDA_VERSION="4.5.4" && \
-    CONDA_MD5_CHECKSUM="a946ea1d0c4a642ddf0c3a26a18bb16d" && \
+RUN CONDA_VERSION="4.7.12.1" && \
+    CONDA_MD5_CHECKSUM="81c773ff87af5cfac79ab862942ab6b3" && \
     \
     apk add --no-cache git bash nano && \
     \
