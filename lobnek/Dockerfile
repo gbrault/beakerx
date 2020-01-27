@@ -11,7 +11,7 @@ ENV LANG=C.UTF-8
 RUN CONDA_VERSION="4.5.4" && \
     CONDA_MD5_CHECKSUM="a946ea1d0c4a642ddf0c3a26a18bb16d" && \
     \
-    apk add --no-cache git bash postgresql-client nano && \
+    apk add --no-cache git bash nano && \
     \
     apk add --no-cache --virtual=.build-dependencies wget ca-certificates && \
     \
@@ -29,7 +29,7 @@ RUN CONDA_VERSION="4.5.4" && \
     chmod 777 "$CONDA_DIR/locks" && \
     \
     conda update -n base conda pip && \
-    conda install -y -c conda-forge nomkl pandas cvxpy=1.0.15 sqlalchemy psycopg2=2.7.6.1 numba pymongo psutil && \
+    conda install -y -c conda-forge nomkl pandas cvxpy=1.0.25 pymongo psutil && \
     rm -r "$CONDA_DIR/pkgs/" && \
     \
     apk del --purge .build-dependencies
