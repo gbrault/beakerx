@@ -1,7 +1,7 @@
 #!make
 IMAGE := lobnek/jupyterx
 SHELL := /bin/bash
-VERSION := 4.9
+VERSION := 5.1
 
 .PHONY: help build jupyter jupyterlab hub
 
@@ -30,9 +30,12 @@ jupyterlab: build-lab
 	echo "http://localhost:8862/lab"
 	docker-compose up jupyterlab
 
-hub: build-lab
-	#docker build -f Dockerfile --tag ${IMAGE}:latest --target jupyterlab .
+hub: tag
 	docker push ${IMAGE}:latest
 	docker tag ${IMAGE}:latest ${IMAGE}:${VERSION}
 	docker push ${IMAGE}:${VERSION}
 	docker rmi -f ${IMAGE}:${VERSION}
+
+tag: build-lab
+	git tag -a ${PROJECT_VERSION} -m "new tag"
+	git push --tags
