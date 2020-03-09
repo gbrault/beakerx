@@ -1,24 +1,20 @@
-version: '3.5'
+version: '3.6'
 services:
-  jupyter:
-    image: lobnek/jupyterx:latest
-    build:
-       context: .
-       dockerfile: Dockerfile
-       target: jupyter
-    #volumes:
-    #   - /media/j/notebooks:/home/jovyan/work
-    ports:
-       - 8861:8888
+#  jupyter:
+#    image: {IMAGE}:latest
+#    build:
+#       context: .
+#       dockerfile: Dockerfile
+#       target: jupyter
+#    ports:
+#       - 8861:8888
 
   jupyterlab:
-    image: lobnek/jupyterx:latest
+    image: {IMAGE}:latest
     build:
       context: .
       dockerfile: Dockerfile
       target: jupyterlab
-    #volumes:
-      # /media/j/notebooks:/home/jovyan/work
     ports:
-      - 8862:8888
+      - {PORT}:8888
 
