@@ -1,10 +1,9 @@
-version: '3.6'
+version: '3'
 services:
   jupyterlab:
-    image: ${IMAGE}
+    image: "${IMAGE}"
     build:
       context: .
       dockerfile: Dockerfile
-      target: jupyterlab
     ports:
       - ${PORT}:8888

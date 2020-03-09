@@ -2,7 +2,7 @@
 
 # Ignore Everything
 **
-!jupyter_classic/jupyter_notebook_config.py
+!jupyter_notebook_config.py
 
 **/__pycache__
 **/*.pyc

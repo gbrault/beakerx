@@ -18,18 +18,11 @@ help:
 	@echo "make hub"
 	@echo "       Push to Docker Hub"
 
-#build:
-#	docker-compose build jupyter
-
 build-lab:
-	docker-compose build jupyterlab
-
-#jupyter: build
-#	echo "http://localhost:8861"
-#	docker-compose up jupyter
+	docker-compose up jupyterlab
 
 jupyterlab: build-lab
-	echo "http://localhost:8862/lab"
+	echo "http://localhost:${PORT}/lab"
 	docker-compose up jupyterlab
 
 hub: tag

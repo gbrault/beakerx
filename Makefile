@@ -1,17 +1,36 @@
 #!make
+include .env
+export
+
+#IMAGE := ${IMAGE}
 SHELL := /bin/bash
-VERSION := 0.4
+VERSION := 5.3
 
-.PHONY: help tag
-
+.PHONY: help build jupyter jupyterlab hub
 
 .DEFAULT: help
 
 help:
-	@echo "make tag"
-	@echo "       Make a tag on Github."
+	@echo "make build"
+	@echo "       Build the docker image."
+	@echo "make jupyter"
+	@echo "       Start the Jupyter server."
+	@echo "make hub"
+	@echo "       Push to Docker Hub"
 
-tag:
+build-lab:
+	docker-compose build jupyterlab
+
+jupyterlab: build-lab
+	echo "http://localhost:${PORT}/lab"
+	docker-compose up jupyterlab
+
+hub: tag
+	docker push ${IMAGE}:latest
+	docker tag ${IMAGE}:latest ${IMAGE}:${VERSION}
+	docker push ${IMAGE}:${VERSION}
+	docker rmi -f ${IMAGE}:${VERSION}
+
+tag: build-lab
 	git tag -a ${VERSION} -m "new tag"
 	git push --tags
-
