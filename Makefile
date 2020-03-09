@@ -2,11 +2,10 @@
 include .env
 export
 
-#IMAGE := ${IMAGE}
 SHELL := /bin/bash
 VERSION := 5.3
 
-.PHONY: help build jupyter jupyterlab hub
+.PHONY: help build jupyter hub tag
 
 .DEFAULT: help
 
@@ -17,11 +16,13 @@ help:
 	@echo "       Start the Jupyter server."
 	@echo "make hub"
 	@echo "       Push to Docker Hub"
+	@echo "make tag"
+	@echo "       Tag the Github repository"
 
-build-lab:
+build:
 	docker-compose build jupyterlab
 
-jupyterlab: build-lab
+jupyter: build-lab
 	echo "http://localhost:${PORT}/lab"
 	docker-compose up jupyterlab
 
