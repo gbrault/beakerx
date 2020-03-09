@@ -22,7 +22,7 @@ help:
 build:
 	docker-compose build jupyterlab
 
-jupyter: build-lab
+jupyter: build
 	echo "http://localhost:${PORT}/lab"
 	docker-compose up jupyterlab
 
@@ -32,6 +32,6 @@ hub: tag
 	docker push ${IMAGE}:${VERSION}
 	docker rmi -f ${IMAGE}:${VERSION}
 
-tag: build-lab
+tag: build
 	git tag -a ${VERSION} -m "new tag"
 	git push --tags
