@@ -1,7 +1,7 @@
 #!make
 IMAGE := lobnek/jupyterx
 SHELL := /bin/bash
-VERSION := 5.1
+VERSION := 5.2
 
 .PHONY: help build jupyter jupyterlab hub
 
