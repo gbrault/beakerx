@@ -1,6 +1,15 @@
-### build the image locally (faster than going through dockerhub. Dockerhub often times out...)
-docker build --tag lobnek/docker .
+Construct the docker image for a JupyterLab server.
 
-### tags an existing image and pushes it to dockerhub where it shows up with the tag
-docker tag lobnek/docker lobnek/docker:v0.1
-docker push lobnek/docker
+We build the image locally and push to dockerhub as the build process on dockerhub is somewhat unreliable.
+
+Try 
+
+`
+make jupyter
+`
+
+This will fire off a Jupyter container on a port specified in `.env`.
+
+In the `r` folder we run a few experiments with r and in particular arrow. Using arrow we try to build 
+a system being able to exchange data using the arrow route. This is at a very, very experimental stage currently.
+
