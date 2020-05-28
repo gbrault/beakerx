@@ -23,7 +23,8 @@ RUN conda install -y -c conda-forge pandas=0.25.3 cvxpy=1.0.27 rise=5.6.1 pyarro
 # clone beakerx
 WORKDIR /home/jovyan
 RUN git clone https://github.com/twosigma/beakerx.git
-RUN conda create -n labx -f configuration.yml
+RUN conda create -n labx
+RUN conda install --yes --file configuration.yml
 RUN conda activate labx # For conda versions prior to 4.6, run: source activate labx
 RUN conda install -y -c conda-forge jupyterlab=1
 RUN (cd beakerx; pip install -r requirements.txt --verbose)
