@@ -17,10 +17,20 @@ USER $NB_UID
 COPY jupyter_notebook_config.py /etc/jupyter/jupyter_notebook_config.py
 
 # install rise and cvxpy
-RUN conda install -y -c conda-forge pandas=0.25.3 cvxpy=1.0.27 beakerx=1.4.1 rise=5.6.1 pyarrow=0.16.0 && \
+RUN conda install -y -c conda-forge pandas=0.25.3 cvxpy=1.0.27 rise=5.6.1 pyarrow=0.16.0 && \
     conda clean -y --all
 
-# ----------------------------------------------------------------------------------------
-RUN jupyter labextension install @jupyter-widgets/jupyterlab-manager && \
-    jupyter labextension install beakerx-jupyterlab && \
-    jupyter lab build
+# clone beakerx
+WORKDIR /home/jovyan
+RUN git clone https://github.com/twosigma/beakerx.git
+RUN conda env create -n labx -f configuration.yml
+RUN conda activate labx # For conda versions prior to 4.6, run: source activate labx
+RUN conda install -y -c conda-forge jupyterlab=1
+RUN (cd beakerx; pip install -r requirements.txt --verbose)
+RUN beakerx install
+RUN jupyter labextension install @jupyter-widgets/jupyterlab-manager --no-build
+RUN (cd js/lab; jupyter labextension install . --no-build)
+RUN (cd js/lab-theme-dark; jupyter labextension install . --no-build)
+RUN (cd js/lab-theme-light; jupyter labextension install . --no-build)
+RUN jupyter lab build
+
